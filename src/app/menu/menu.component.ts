@@ -8,6 +8,10 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
+  action1 = {title: 'Action1'};
+  action2 = {title: 'Action2'};
+  action3 = {title: 'Action3'};
+
   constructor() { }
 
   ngOnInit() {
@@ -15,5 +19,9 @@ export class MenuComponent implements OnInit {
 
   logCD() {
     console.log('CD menu');
+  }
+
+  changeAction3Name() {
+    this.action3 = {title: 'Action' + Math.floor(Math.random() * Math.floor(100))};
   }
 }
