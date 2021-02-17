@@ -1,37 +1,34 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-content-item',
   templateUrl: './content-item.component.html',
   styleUrls: ['./content-item.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentItemComponent implements OnInit {
 
-  value = 'value';
+  value = 'content';
 
-  constructor(private cdr: ChangeDetectorRef, private elementRef: ElementRef) {
+  constructor(private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
-    this.elementRef.nativeElement.addEventListener('mousemove', () => this.move());
     setTimeout(() => {
-      this.value = 'new value';
+      console.log('timeout');
+      this.value = 'new content';
       this.cdr.markForCheck();
     });
   }
 
   move() {
-    this.value = 'moving value';
+    console.log('move');
+    this.value = 'moving content';
     this.cdr.markForCheck();
   }
 
   displayHello() {
-    return 'hello ' + this.value;
-  }
-
-  refresh() {
-    // DO NOTHING
+    console.log('display hello');
+    return 'Some ' + this.value;
   }
 
   logCD() {

@@ -1,10 +1,9 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-menu-item',
   templateUrl: './menu-item.component.html',
   styleUrls: ['./menu-item.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuItemComponent implements OnInit {
 
@@ -18,9 +17,4 @@ export class MenuItemComponent implements OnInit {
   logCD() {
     console.log('CD menu-item');
   }
-
-  logAction() {
-    console.log('action');
-  }
-
 }

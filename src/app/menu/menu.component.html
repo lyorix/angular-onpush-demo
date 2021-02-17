@@ -1,6 +1,5 @@
 {{logCD()}}
+<a><h1>Demo</h1></a>
 <div>
-  <app-menu-item [action]="action1" (click)="changeAction3Name()"></app-menu-item>
-  <app-menu-item [action]="action2"></app-menu-item>
-  <app-menu-item [action]="action3"></app-menu-item>
+  <app-menu-item *ngFor="let action of actions" [action]="action" (click)="changeAction3Name()"></app-menu-item>
 </div>
