@@ -20,6 +20,6 @@ export class MenuComponent implements OnInit {
 
   changeAction3Name() {
     console.log('action');
-    this.actions[2] = {title: 'Action' + Math.floor(Math.random() * Math.floor(100))};
+    this.actions[2].title = 'Action' + Math.floor(Math.random() * Math.floor(100));
   }
 }
