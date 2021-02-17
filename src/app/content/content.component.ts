@@ -6,7 +6,6 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./content.component.css'],
 })
 export class ContentComponent implements OnInit {
-
   constructor() {
   }
 
@@ -16,5 +15,4 @@ export class ContentComponent implements OnInit {
   logCD() {
     console.log('CD content');
   }
-
 }

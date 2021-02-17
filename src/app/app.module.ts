@@ -6,6 +6,7 @@ import {ContentComponent} from './content/content.component';
 import {MenuComponent} from './menu/menu.component';
 import {MenuItemComponent} from './menu/menu-item/menu-item.component';
 import {ContentItemComponent} from './content/content-item/content-item.component';
+import { SquareComponent } from './square/square.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {ContentItemComponent} from './content/content-item/content-item.componen
     ContentComponent,
     MenuComponent,
     MenuItemComponent,
-    ContentItemComponent
+    ContentItemComponent,
+    SquareComponent
   ],
   imports: [
     BrowserModule
