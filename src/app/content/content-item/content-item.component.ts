@@ -19,11 +19,6 @@ export class ContentItemComponent implements OnInit {
     });
   }
 
-  move() {
-    console.log('move');
-    this.value = 'moving content';
-  }
-
   displayHello() {
     console.log('display hello');
     return 'Some ' + this.value;

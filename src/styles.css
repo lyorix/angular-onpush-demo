@@ -20,6 +20,8 @@ body {
 
 app-content  {
   padding: 0 16px;
+  height: 800px;
+  width: 100%;
 }
 
 /* Text */
