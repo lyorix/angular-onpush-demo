@@ -1,9 +1,10 @@
-import {ChangeDetectorRef, Component, ElementRef, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-content-item',
   templateUrl: './content-item.component.html',
   styleUrls: ['./content-item.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentItemComponent implements OnInit {
 
