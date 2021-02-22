@@ -1,10 +1,11 @@
-import {Component, NgZone, OnInit, Renderer2} from '@angular/core';
-import {fromEvent, Subscription} from "rxjs";
+import {ChangeDetectionStrategy, Component, NgZone, OnInit, Renderer2} from '@angular/core';
+import {fromEvent, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentComponent implements OnInit {
   private item: any;

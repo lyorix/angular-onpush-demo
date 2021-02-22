@@ -1,11 +1,12 @@
-import {AfterViewInit, Component, HostListener, NgZone, OnDestroy} from '@angular/core';
-import {fromEvent, Subject} from "rxjs";
-import {takeUntil} from "rxjs/operators";
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, NgZone, OnDestroy} from '@angular/core';
+import {fromEvent, Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements AfterViewInit, OnDestroy  {
   private unsubscribe$ = new Subject<void>();
@@ -13,6 +14,7 @@ export class AppComponent implements AfterViewInit, OnDestroy  {
 
   constructor(
     private zone: NgZone,
+    private cdr: ChangeDetectorRef
   ) {
   }
 
@@ -31,12 +33,14 @@ export class AppComponent implements AfterViewInit, OnDestroy  {
       if (!this.isSticky) {
         this.zone.run(() => {
           this.isSticky = true;
+          this.cdr.markForCheck();
         });
       }
     } else {
       if (this.isSticky) {
         this.zone.run(() => {
           this.isSticky = false;
+          this.cdr.markForCheck();
         });
       }
     }

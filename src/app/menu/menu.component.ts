@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MenuComponent implements OnInit {
 
@@ -20,6 +21,6 @@ export class MenuComponent implements OnInit {
 
   changeAction3Name() {
     console.log('action');
-    this.actions[2].title = 'Action' + Math.floor(Math.random() * Math.floor(100));
+    this.actions[2] = {title: 'Action' + Math.floor(Math.random() * Math.floor(100))};
   }
 }

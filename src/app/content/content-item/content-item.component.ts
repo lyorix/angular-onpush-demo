@@ -1,15 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-content-item',
   templateUrl: './content-item.component.html',
   styleUrls: ['./content-item.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentItemComponent implements OnInit {
 
   value = 'content';
 
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -25,6 +26,7 @@ export class ContentItemComponent implements OnInit {
     setTimeout(() => {
       console.log('timeout');
       this.value = 'new content';
+      this.cdr.markForCheck();
     });
   }
 
