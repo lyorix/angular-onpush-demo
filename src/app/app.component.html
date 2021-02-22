@@ -1,6 +1,6 @@
 {{logCD()}}
-<app-menu></app-menu>
+<app-menu [class.sticky]="isSticky"></app-menu>
 <div class="container">
   <app-content></app-content>
 </div>
-<app-square class="square" (mousedown)="start($event)" (mousemove)="move($event)" (mouseup)="end()"></app-square>
+<app-square class="square" (mousedown)="start($event)" (mouseup)="end()"></app-square>
