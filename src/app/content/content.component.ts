@@ -1,5 +1,4 @@
-import {Component, NgZone, OnInit, Renderer2} from '@angular/core';
-import {fromEvent, Subscription} from "rxjs";
+import {Component, OnInit, Renderer2} from '@angular/core';
 
 @Component({
   selector: 'app-content',
@@ -10,10 +9,8 @@ export class ContentComponent implements OnInit {
   private item: any;
   private startX: number;
   private startY: number;
-  private moveSubscription: Subscription;
 
-  constructor(private renderer: Renderer2,
-              private zone: NgZone) {
+  constructor(private renderer: Renderer2) {
   }
 
   ngOnInit() {
@@ -24,15 +21,12 @@ export class ContentComponent implements OnInit {
   }
 
   start(event): void {
-    this.zone.runOutsideAngular(() => {
-      this.item = event.target;
-      if (!this.startX) {
-        this.startX = event.clientX;
-        this.startY = event.clientY;
-      }
-      this.moveSubscription = fromEvent(document, 'mousemove').subscribe(evt => this.move(evt));
-      event.preventDefault();
-    });
+    this.item = event.target;
+    if (!this.startX) {
+      this.startX = event.clientX;
+      this.startY = event.clientY;
+    }
+    event.preventDefault();
   }
 
   move(event): void {
@@ -42,9 +36,6 @@ export class ContentComponent implements OnInit {
   }
 
   end(): void {
-    if (this.item) {
-      this.moveSubscription.unsubscribe();
-      this.item = undefined;
-    }
+    this.item = undefined;
   }
 }

@@ -1,18 +1,14 @@
-import {AfterViewInit, Component, NgZone, OnDestroy} from '@angular/core';
-import {fromEvent, Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import {Component, HostListener} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements AfterViewInit, OnDestroy {
-  private unsubscribe$ = new Subject<void>();
+export class AppComponent {
   isSticky = false;
 
   constructor(
-    private zone: NgZone,
   ) {
   }
 
@@ -20,36 +16,16 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     console.log('CD app');
   }
 
-  ngAfterViewInit() {
-    this.zone.runOutsideAngular(() => {
-      fromEvent(document, 'scroll').pipe(takeUntil(this.unsubscribe$)).subscribe(evt => this.sticky());
-    });
+  @HostListener('window:scroll', ['$event'])
+  public scroll() {
+    this.handleSticky();
   }
 
-  private sticky() {
+  private handleSticky() {
     if (window.pageYOffset > 0) {
-      if (!this.isSticky) {
-        this.zone.run(() => {
-          this.isSticky = true;
-        });
-      }
+      this.isSticky = true;
     } else {
-      if (this.isSticky) {
-        this.zone.run(() => {
-          this.isSticky = false;
-        });
-      }
+      this.isSticky = false;
     }
   }
-
-  ngOnDestroy() {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
-
-  // @HostListener('window:scroll', ['$event'])
-  // public scroll(event) {
-  //   this.isSticky = this.element.nativeElement.offsetTop < 0 ?
-  //     false : window.pageYOffset > this.element.nativeElement.offsetTop;
-  // }
 }

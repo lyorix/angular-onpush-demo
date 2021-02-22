@@ -13,15 +13,19 @@ export class ContentItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      console.log('timeout');
-      this.value = 'new content';
-    });
+    this.refreshContent();
   }
 
   displayHello() {
     console.log('display hello');
     return 'Some ' + this.value;
+  }
+
+  private refreshContent() {
+    setTimeout(() => {
+      console.log('timeout');
+      this.value = 'new content';
+    });
   }
 
   logCD() {
