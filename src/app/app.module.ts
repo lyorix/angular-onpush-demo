@@ -6,7 +6,7 @@ import {ContentComponent} from './content/content.component';
 import {MenuComponent} from './menu/menu.component';
 import {MenuItemComponent} from './menu/menu-item/menu-item.component';
 import {ContentItemComponent} from './content/content-item/content-item.component';
-import { SquareComponent } from './square/square.component';
+import {SquareComponent} from './content/square/square.component';
 
 @NgModule({
   declarations: [

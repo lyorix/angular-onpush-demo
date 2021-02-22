@@ -1,6 +1,6 @@
-import {AfterViewInit, Component, NgZone, OnDestroy, Renderer2} from '@angular/core';
-import {fromEvent, Subject, Subscription} from "rxjs";
-import {takeUntil} from "rxjs/operators";
+import {AfterViewInit, Component, NgZone, OnDestroy} from '@angular/core';
+import {fromEvent, Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +8,11 @@ import {takeUntil} from "rxjs/operators";
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements AfterViewInit, OnDestroy {
-  private item: any;
-  private startX: number;
-  private startY: number;
-  private moveSubscription: Subscription;
   private unsubscribe$ = new Subject<void>();
   isSticky = false;
 
   constructor(
     private zone: NgZone,
-    private renderer: Renderer2,
   ) {
   }
 
@@ -57,29 +52,4 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   //   this.isSticky = this.element.nativeElement.offsetTop < 0 ?
   //     false : window.pageYOffset > this.element.nativeElement.offsetTop;
   // }
-
-  start(event): void {
-    this.zone.runOutsideAngular(() => {
-      this.item = event.target;
-      if (!this.startX) {
-        this.startX = event.clientX;
-        this.startY = event.clientY;
-      }
-      this.moveSubscription = fromEvent(document, 'mousemove').subscribe(evt => this.move(evt));
-      event.preventDefault();
-    });
-  }
-
-  move(event): void {
-    if (this.item) {
-      this.renderer.setStyle(this.item, 'transform', `translate(${event.clientX - this.startX}px,${event.clientY - this.startY}px)`);
-    }
-  }
-
-  end(): void {
-    if (this.item) {
-      this.moveSubscription.unsubscribe();
-      this.item = undefined;
-    }
-  }
 }

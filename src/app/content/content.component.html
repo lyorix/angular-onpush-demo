@@ -1,3 +1,5 @@
 {{logCD()}}
-<app-content-item></app-content-item>
-
+<div>
+  <app-content-item></app-content-item>
+  <app-square class="square" (mousedown)="start($event)" (mouseup)="end()"></app-square>
+</div>
